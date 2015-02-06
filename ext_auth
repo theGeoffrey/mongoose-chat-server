@@ -1,0 +1,39 @@
+#!/usr/bin/python
+
+import sys
+import struct
+from urllib import urlencode
+from urllib2 import urlopen
+
+BASE_URL = "http://geoffrey.co/api/session/{}/{}/confirm?{}"
+
+
+def generate(response=False):
+    print(response)
+    sys.stdout.write(struct.pack('>hh', 2, int(response is True)))
+    sys.stdout.flush()
+
+def main():
+    try:
+        while True:
+            # Verify the information checks out
+            try:
+                length = sys.stdin.read(2)
+                size = struct.unpack('>h', length)[0]
+                input = sys.stdin.read(size).split(':')
+                operation = input.pop(0)
+                if operation == 'auth':
+                    username, host, password = input
+                    skey, pkey = password.split("@", 1)
+                    url = BASE_URL.format(pkey, skey, urlencode({"username": username, "chat_host": host}))
+                    req = urlopen(url)
+                    generate(req.read() == 'true')
+            except Exception, ex:
+                generate()
+
+    except KeyboardInterrupt:
+        raise SystemExit(0)
+
+
+if __name__ == "__main__":
+    main()
