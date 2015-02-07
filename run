@@ -1,0 +1,61 @@
+#!/bin/bash
+set -e
+
+readonly HOSTNAME=$(hostname -f)
+
+readonly MONGOOSEIMCTL="${MONGOOSEIM_ROOT}/bin/mongooseimctl"
+readonly CONFIGFILE="${MONGOOSEIM_ROOT}/etc/ejabberd.cfg"
+readonly CONFIGTEMPLATE="${MONGOOSEIM_ROOT}/etc/ejabberd.cfg.tpl"
+readonly LOGDIR="${MONGOOSEIM_ROOT}/logs"
+
+readonly PYTHON_JINJA2="import os;
+import sys;
+import jinja2;
+sys.stdout.write(
+    jinja2.Template
+        (sys.stdin.read()
+    ).render(env=os.environ))"
+
+_trap() {
+    echo "Stopping mongooseim..."
+    if ctl stop ; then
+        local cnt=0
+        sleep 1
+        while ctl status || test $? = 1 ; do
+            cnt=`expr $cnt + 1`
+            if [ $cnt -ge 60 ] ; then
+                break
+            fi
+            sleep 1
+        done
+    fi
+}
+
+
+## setup
+
+echo "Generating mongooseim config file..."
+cat ${CONFIGTEMPLATE} \
+  | python -c "${PYTHON_JINJA2}" \
+  > ${CONFIGFILE}
+
+
+# Catch signals and shutdown mongooseim
+trap _trap SIGTERM SIGINT
+
+## run mongooseim
+case "$@" in
+    start)
+        tail -F ${LOGDIR}/crash.log \
+                ${LOGDIR}/error.log \
+                ${LOGDIR}/erlang.log &
+        echo "Starting mongooseim..."
+        exec ${MONGOOSEIMCTL} "live" &
+        child=$!
+        wait $child
+    ;;
+    live)
+        echo "Starting mongooseim in 'live' mode..."
+        exec ${MONGOOSEIMCTL} "live"
+    ;;
+esac
