@@ -18,4 +18,4 @@ COPY ./run $MONGOOSE_ROOT/bin/run
 EXPOSE 80
 
 CMD ["start"]
-ENTRYPOINT ["run"]
+ENTRYPOINT ["$MONGOOSE_ROOT/bin/run"]
