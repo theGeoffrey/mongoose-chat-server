@@ -13,13 +13,13 @@ RUN apt-get -y --no-install-recommends install \
 
 
 COPY ejabberd.cfg.tpl $MONGOOSE_ROOT/etc/ejabberd.cfg.tpl
-COPY ./ext_auth $MONGOOSE_ROOT/bin/ext_auth
+COPY ext_auth $MONGOOSE_ROOT/bin/ext_auth
 
-COPY ./run $MONGOOSE_ROOT/bin/run
+COPY run $MONGOOSE_ROOT/bin/run
 
 ONBUILD RUN run
 
-EXPOSE 80
+EXPOSE 5000 8080
 
 CMD ["live"]
 ENTRYPOINT ["mongooseimctl"]
