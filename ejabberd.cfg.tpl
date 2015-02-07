@@ -20,7 +20,7 @@
 
   { 80, ejabberd_cowboy, [
       {num_acceptors, 10},
-      {max_connections, 2048},
+      {max_connections, 1024},
       {modules, [
           {"localhost", "/api", mongoose_api, [{handlers, [mongoose_api_metrics,
                                                            mongoose_api_users]}]},
