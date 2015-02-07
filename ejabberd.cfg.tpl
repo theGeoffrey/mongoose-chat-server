@@ -33,7 +33,7 @@
             {access, c2s},
             {shaper, c2s_shaper},
             {max_stanza_size, 65536}
-               ]},
+               ]}
  ]}.
 
 {s2s_default_policy, deny }.
