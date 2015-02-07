@@ -43,9 +43,8 @@ cat ${CONFIGTEMPLATE} \
 # Catch signals and shutdown mongooseim
 # trap _trap SIGTERM SIGINT
 
-exec ${MONGOOSEIMCTL} "live"
 
-## run mongooseim
+# ## run mongooseim
 # case "$@" in
 #     start)
 #         # tail -F ${LOGDIR}/ejabberd.log &
