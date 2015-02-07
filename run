@@ -6,7 +6,7 @@ readonly HOSTNAME=$(hostname -f)
 readonly MONGOOSEIMCTL="${MONGOOSE_ROOT}/bin/mongooseimctl"
 readonly CONFIGFILE="${MONGOOSE_ROOT}/etc/ejabberd.cfg"
 readonly CONFIGTEMPLATE="${MONGOOSE_ROOT}/etc/ejabberd.cfg.tpl"
-readonly LOGDIR="${MONGOOSE_ROOT}/log"
+readonly LOGDIR="${MONGOOSE_ROOT}/var/log"
 
 readonly PYTHON_JINJA2="import os;
 import sys;
