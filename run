@@ -43,6 +43,7 @@ cat ${CONFIGTEMPLATE} \
 # Catch signals and shutdown mongooseim
 trap _trap SIGTERM SIGINT
 
+
 ## run mongooseim
 case "$@" in
     start)
