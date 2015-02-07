@@ -6,7 +6,7 @@ readonly HOSTNAME=$(hostname -f)
 readonly MONGOOSEIMCTL="${MONGOOSE_ROOT}/bin/mongooseimctl"
 readonly CONFIGFILE="${MONGOOSE_ROOT}/etc/ejabberd.cfg"
 readonly CONFIGTEMPLATE="${MONGOOSE_ROOT}/etc/ejabberd.cfg.tpl"
-readonly LOGDIR="${MONGOOSE_ROOT}/var/log"
+readonly LOGDIR="${MONGOOSE_ROOT}/log"
 
 readonly PYTHON_JINJA2="import os;
 import sys;
@@ -46,7 +46,7 @@ trap _trap SIGTERM SIGINT
 ## run mongooseim
 case "$@" in
     start)
-        tail -F ${LOGDIR}/* &
+        tail -F ${LOGDIR}/ejabberd.log &
         echo "Starting mongooseim..."
         exec ${MONGOOSEIMCTL} "live" &
         child=$!
