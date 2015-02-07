@@ -3,6 +3,7 @@ FROM mongooseim/mongooseim-docker
 MAINTAINER Benjamin Kampmann <ben@create-build-execute.com>
 
 ENV MONGOOSE_ROOT /usr/lib/mongooseim
+ENV PATH $MONGOOSE_ROOT/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 RUN apt-get -y --no-install-recommends install \
         python2.7 \
@@ -18,4 +19,4 @@ COPY ./run $MONGOOSE_ROOT/bin/run
 EXPOSE 80
 
 CMD ["start"]
-ENTRYPOINT ["$MONGOOSE_ROOT/bin/run"]
+ENTRYPOINT ["run"]
