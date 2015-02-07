@@ -42,9 +42,9 @@
 
 {sm_backend, {mnesia, []} }.
 
-{auth_method, [external, anonymous]}.
+{auth_method, [internal, anonymous]}.
 {auth_opts, [
-             {extauth_program, "/usr/lib/mongooseim/bin/ext_auth"}
+             % {extauth_program, "/usr/lib/mongooseim/bin/ext_auth"}
 %%                        {allow_multiple_connections, false},
 %%                        {anonymous_protocol, sasl_anon}
             ]}.
