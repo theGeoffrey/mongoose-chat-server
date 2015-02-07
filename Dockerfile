@@ -17,9 +17,7 @@ COPY ext_auth $MONGOOSE_ROOT/bin/ext_auth
 
 COPY run $MONGOOSE_ROOT/bin/run
 
-ONBUILD RUN run
-
 EXPOSE 5000 8080
 
 CMD ["live"]
-ENTRYPOINT ["mongooseimctl"]
+ENTRYPOINT ["run"]

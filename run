@@ -44,15 +44,17 @@ cat ${CONFIGTEMPLATE} \
 # trap _trap SIGTERM SIGINT
 
 
-# ## run mongooseim
-# case "$@" in
-#     start)
-#         # tail -F ${LOGDIR}/ejabberd.log &
-#         echo "Starting mongooseim..."
-#         exec ${MONGOOSEIMCTL} "live"
-#     ;;
-#     live)
-#         echo "Starting mongooseim in 'live' mode..."
-#         exec ${MONGOOSEIMCTL} "live"
-#     ;;
-# esac
+## run mongooseim
+case "$@" in
+    start)
+        # tail -F ${LOGDIR}/ejabberd.log &
+        echo "Starting mongooseim..."
+        exec "${MONGOOSEIMCTL} live" &
+        child=$!
+        wait $child
+    ;;
+    live)
+        echo "Starting mongooseim in 'live' mode..."
+        exec ${MONGOOSEIMCTL} "live"
+    ;;
+esac
