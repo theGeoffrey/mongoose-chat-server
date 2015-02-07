@@ -49,7 +49,8 @@ case "$@" in
     start)
         # tail -F ${LOGDIR}/ejabberd.log &
         echo "Starting mongooseim..."
-        exec "${MONGOOSEIMCTL} live" &
+        exec "${MONGOOSEIMCTL} start" &
+        sleep 3
         PID=`ps ax -o pid= -o command=|\
                     grep "$MONGOOSE_ROOT/.*/[b]eam"|awk '{print $1}'`
         wait $PID
