@@ -49,7 +49,7 @@ case "$@" in
     start)
         # tail -F ${LOGDIR}/ejabberd.log &
         echo "Starting mongooseim..."
-        exec "${MONGOOSEIMCTL} live"
+        exec ${MONGOOSEIMCTL} "live"
     ;;
     live)
         echo "Starting mongooseim in 'live' mode..."
