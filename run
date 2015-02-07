@@ -3,7 +3,7 @@ set -e
 
 readonly HOSTNAME=$(hostname -f)
 
-readonly MONGOOSEIMCTL="${MONGOOSE_ROOT}/bin/mongooseimctl"
+readonly MONGOOSEIMCTL="${MONGOOSE_ROOT}/bin/mongooseim"
 readonly CONFIGFILE="${MONGOOSE_ROOT}/etc/ejabberd.cfg"
 readonly CONFIGTEMPLATE="${MONGOOSE_ROOT}/etc/ejabberd.cfg.tpl"
 readonly LOGDIR="${MONGOOSE_ROOT}/var/log"
@@ -49,7 +49,7 @@ case "$@" in
     start)
         # tail -F ${LOGDIR}/ejabberd.log &
         echo "Starting mongooseim..."
-        exec ${MONGOOSEIMCTL} "live" &
+        exec ${MONGOOSEIMCTL} "start" &
         child=$!
         wait $child
     ;;
