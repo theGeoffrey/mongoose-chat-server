@@ -50,8 +50,9 @@ case "$@" in
         # tail -F ${LOGDIR}/ejabberd.log &
         echo "Starting mongooseim..."
         exec "${MONGOOSEIMCTL} live" &
-        child=$!
-        wait $child
+        PID=`ps ax -o pid= -o command=|\
+                    grep "$MONGOOSE_ROOT/.*/[b]eam"|awk '{print $1}'`
+        wait $PID
     ;;
     live)
         echo "Starting mongooseim in 'live' mode..."
