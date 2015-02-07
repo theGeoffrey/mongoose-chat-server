@@ -18,7 +18,7 @@
 {listen,
  [
 
-  { 80, ejabberd_cowboy, [
+  { 5000, ejabberd_cowboy, [
       {num_acceptors, 10},
       {max_connections, 1024},
       {modules, [
@@ -29,7 +29,7 @@
       ]}
   ]},
 
-  { 5000, ejabberd_c2s, [
+  { 8080, ejabberd_c2s, [
             {access, c2s},
             {shaper, c2s_shaper},
             {max_stanza_size, 65536}
