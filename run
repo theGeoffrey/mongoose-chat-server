@@ -3,10 +3,10 @@ set -e
 
 readonly HOSTNAME=$(hostname -f)
 
-readonly MONGOOSEIMCTL="${MONGOOSEIM_ROOT}/bin/mongooseimctl"
-readonly CONFIGFILE="${MONGOOSEIM_ROOT}/etc/ejabberd.cfg"
-readonly CONFIGTEMPLATE="${MONGOOSEIM_ROOT}/etc/ejabberd.cfg.tpl"
-readonly LOGDIR="${MONGOOSEIM_ROOT}/logs"
+readonly MONGOOSEIMCTL="${MONGOOSE_ROOT}/bin/mongooseimctl"
+readonly CONFIGFILE="${MONGOOSE_ROOT}/etc/ejabberd.cfg"
+readonly CONFIGTEMPLATE="${MONGOOSE_ROOT}/etc/ejabberd.cfg.tpl"
+readonly LOGDIR="${MONGOOSE_ROOT}/logs"
 
 readonly PYTHON_JINJA2="import os;
 import sys;
