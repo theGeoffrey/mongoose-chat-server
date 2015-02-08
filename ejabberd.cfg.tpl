@@ -44,9 +44,9 @@
 
 {auth_method, [external, anonymous]}.
 {auth_opts, [
-             {extauth_program, "{{env['MONGOOSE_ROOT']}}/bin/ext_auth"}
-%%                        {allow_multiple_connections, false},
-%%                        {anonymous_protocol, sasl_anon}
+             {extauth_program, "{{env['MONGOOSE_ROOT']}}/bin/ext_auth"},
+             {allow_multiple_connections, false},
+             {anonymous_protocol, sasl_anon}
             ]}.
 
 
