@@ -2,7 +2,7 @@ FROM mongooseim/mongooseim-docker
 
 MAINTAINER Benjamin Kampmann <ben@create-build-execute.com>
 
-ENV LOGLEVEL 4
+ENV LOGLEVEL 5
 ENV MONGOOSE_ROOT /usr/lib/mongooseim
 ENV PATH $MONGOOSE_ROOT/bin:/usr/sbin:/usr/bin:/sbin:/bin
 

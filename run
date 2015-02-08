@@ -34,10 +34,10 @@ _trap() {
 
 ## setup
 
-# echo "Generating mongooseim config file..."
-# cat ${CONFIGTEMPLATE} \
-#   | python -c "${PYTHON_JINJA2}" \
-#   > ${CONFIGFILE}
+echo "Generating mongooseim config file..."
+cat ${CONFIGTEMPLATE} \
+  | python -c "${PYTHON_JINJA2}" \
+  > ${CONFIGFILE}
 
 
 # Catch signals and shutdown mongooseim
@@ -49,16 +49,17 @@ case "$@" in
     start)
         echo "Starting mongooseim..."
         exec ${MONGOOSEIMCTL} "live"
-        child=$!
-        tail -F ${LOGDIR}/ejabberd.log &
-        # echo "post process"
-        # exec ${MONGOOSEIMCTL} "started"
-        # echo "post sleep"
-        # PID=`ps ax -o pid= -o command=|\
-        #             grep "$MONGOOSE_ROOT/.*/[b]eam"|awk '{print $1}'`
-        echo "wait $child"
-        wait $child
+        # child=$!
+        
+        # # echo "post process"
+        # # exec ${MONGOOSEIMCTL} "started"
+        # # echo "post sleep"
+        # # PID=`ps ax -o pid= -o command=|\
+        # #             grep "$MONGOOSE_ROOT/.*/[b]eam"|awk '{print $1}'`
+        # echo "wait $child"
+        # wait $child
         echo "ending"
+        tail -F ${LOGDIR}/ejabberd.log
     ;;
     live)
         echo "Starting mongooseim in 'live' mode..."
