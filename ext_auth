@@ -16,6 +16,11 @@ def generate(response=False):
     except IOError:
         pass
 
+
+class NotImplementedMethod(Exception):
+    pass
+
+
 def main():
     try:
         while True:
@@ -23,16 +28,21 @@ def main():
             try:
                 length = sys.stdin.read(2)
                 size = struct.unpack('>h', length)[0]
-                input = sys.stdin.read(size).split(':')
-                operation = input.pop(0)
+                inpt = sys.stdin.read(size).split(':')
+                operation = inpt.pop(0)
                 if operation == 'auth':
-                    username, host, password = input
+                    username, host, password = inpt
                     skey, pkey = password.split("@", 1)
-                    url = BASE_URL.format(pkey, skey, urlencode({"username": username, "chat_host": host}))
+                    url = BASE_URL.format(pkey, skey,
+                                          urlencode({"username": username,
+                                                     "chat_host": host}))
                     req = urlopen(url)
                     generate(req.read() == 'true')
-            except Exception, ex:
-                generate()
+                else:
+                    # raise to make sure we reply
+                    raise NotImplementedMethod()
+            except Exception:
+                generate(False)
 
     except KeyboardInterrupt:
         raise SystemExit(0)
