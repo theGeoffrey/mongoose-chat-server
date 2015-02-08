@@ -47,16 +47,16 @@ cat ${CONFIGTEMPLATE} \
 ## run mongooseim
 case "$@" in
     start)
-        # tail -F ${LOGDIR}/ejabberd.log &
+        tail -F ${LOGDIR}/mongooseim.log &
         echo "Starting mongooseim..."
         exec ${MONGOOSEIMCTL} "live" &
         child=$!
-        echo "post process"
-        exec ${MONGOOSEIMCTL} "started"
-        echo "post sleep"
-        PID=`ps ax -o pid= -o command=|\
-                    grep "$MONGOOSE_ROOT/.*/[b]eam"|awk '{print $1}'`
-        echo "wait $child $PID"
+        # echo "post process"
+        # exec ${MONGOOSEIMCTL} "started"
+        # echo "post sleep"
+        # PID=`ps ax -o pid= -o command=|\
+        #             grep "$MONGOOSE_ROOT/.*/[b]eam"|awk '{print $1}'`
+        echo "wait $child"
         wait $child
         echo "ending"
     ;;
