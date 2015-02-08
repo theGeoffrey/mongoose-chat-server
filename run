@@ -50,7 +50,7 @@ case "$@" in
         echo "Starting mongooseim..."
         exec ${MONGOOSEIMCTL} "live" &
         child=$!
-        sleep 10
+        sleep 15
         tail -F ${LOGDIR}/ejabberd.log &
         # echo "post process"
         # exec ${MONGOOSEIMCTL} "started"
