@@ -49,14 +49,14 @@ case "$@" in
     start)
         # tail -F ${LOGDIR}/ejabberd.log &
         echo "Starting mongooseim..."
-        exec ${MONGOOSEIMCTL} "live" &
+        exec ${MONGOOSEIMCTL} "start" &
         child=$!
         echo "post process"
-        sleep 1m
+        exec ${MONGOOSEIMCTL} "started"
         echo "post sleep"
         PID=`ps ax -o pid= -o command=|\
                     grep "$MONGOOSE_ROOT/.*/[b]eam"|awk '{print $1}'`
-        echo "wait $CHILD $PID"
+        echo "wait $child $PID"
         wait $child
         echo "ending"
     ;;
