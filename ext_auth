@@ -10,8 +10,11 @@ BASE_URL = "http://geoffrey.co/api/session/{}/{}/confirm?{}"
 
 def generate(response=False):
     print(response)
-    sys.stdout.write(struct.pack('>hh', 2, int(response is True)))
-    sys.stdout.flush()
+    try:
+        sys.stdout.write(struct.pack('>hh', 2, int(response is True)))
+        sys.stdout.flush()
+    except IOError:
+        pass
 
 def main():
     try:
