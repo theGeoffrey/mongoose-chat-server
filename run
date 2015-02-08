@@ -47,10 +47,11 @@ cat ${CONFIGTEMPLATE} \
 ## run mongooseim
 case "$@" in
     start)
-        tail -F ${LOGDIR}/ejabberd.log &
         echo "Starting mongooseim..."
         exec ${MONGOOSEIMCTL} "live" &
         child=$!
+        sleep 10
+        tail -F ${LOGDIR}/ejabberd.log &
         # echo "post process"
         # exec ${MONGOOSEIMCTL} "started"
         # echo "post sleep"
