@@ -19,5 +19,5 @@ COPY run $MONGOOSE_ROOT/bin/run
 
 EXPOSE 5000 8080
 
-CMD ["live"]
+CMD ["start"]
 ENTRYPOINT ["run"]
