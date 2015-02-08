@@ -97,11 +97,11 @@
 
 %% In-band registration allows registration of any possible username.
 %% To disable in-band registration, replace 'allow' with 'deny'.
-{access, register, [{allow, all}]}.
+{access, register, [{deny, all}]}.
 
 %% By default the frequency of account registrations from the same IP
 %% is limited to 1 account every 10 minutes. To disable, specify: infinity
-{registration_timeout, infinity}.
+% {registration_timeout, infinity}.
 
 %% Default settings for MAM.
 %% To set non-standard value, replace 'default' with 'allow' or 'deny'.
