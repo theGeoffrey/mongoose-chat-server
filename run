@@ -49,7 +49,7 @@ case "$@" in
     start)
         # tail -F ${LOGDIR}/ejabberd.log &
         echo "Starting mongooseim..."
-        exec ${MONGOOSEIMCTL} "start"
+        exec ${MONGOOSEIMCTL} "live" &
         child=$!
         echo "post process"
         exec ${MONGOOSEIMCTL} "started"
