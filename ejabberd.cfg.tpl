@@ -42,7 +42,9 @@
 
 {sm_backend, {mnesia, []} }.
 
-{auth_method, [external, anonymous]}.
+% switch these lines to enable anonymous login support
+% {auth_method, [external, anonymous]}.
+{auth_method, [external]}.
 {auth_opts, [
              {extauth_program, "{{env['MONGOOSE_ROOT']}}/bin/ext_auth"},
              {allow_multiple_connections, false},

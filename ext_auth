@@ -31,7 +31,7 @@ def main():
                     skey, pkey = password.split("@", 1)
                     url = BASE_URL.format(pkey, skey,
                                           urlencode({"username": username,
-                                                     "chat_host": host}))
+                                                     "chat_domain": host}))
                     req = urlopen(url)
                     generate(req.read() == 'true')
                 else:
